@@ -6,8 +6,8 @@ defmodule ElixirSdetExerciseTest do
   # Start hound session and destroy when tests are run
   hound_session()
 
-  test "goes to google" do
-    navigate_to "http://google.com"
+  test "goes to facebook" do
+    navigate_to "http://facebook.com"
     IO.inspect page_title()
   end
 end
