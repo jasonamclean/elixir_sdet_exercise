@@ -6,33 +6,24 @@ defmodule ElixirSdetExerciseTest do
   # Start hound session and destroy when tests are run
   hound_session()
 
-  test "create facebook account" do
-    navigate_to "https://www.facebook.com"
-
-  first_name_element = find_element(:id, "u_0_p")
-  fill_field(first_name_element, "sponge")
-  take_screenshot()
-
-  last_name_element = find_element(:id, "u_0_r")
-  fill_field(last_name_element, "pants")
-  take_screenshot()
-
-  email_element = find_element(:name, "reg_email__")
-  fill_field(email_element, "")
-  take_screenshot()
-
-  password_element = find_element(:name, "reg_passwd__")
-  fill_field(password_element, "")
-  take_screenshot()
-
-  gender_element = find_element(:id, "u_0_8")
-  click(gender_element)
-  take_screenshot()
-
-  submit_element(gender_element)
-  take_screenshot()
-
-  delete_cookies()
+  test "goes to facebook" do
+    navigate_to("https://www.facebook.com")
+    IO.inspect page_title()
+    delete_cookies()
   end
 
+  test "create facebook account" do
+    navigate_to("https://www.facebook.com/r.php")
+    IO.inspect current_url()
+    url = current_url()
+    assert current_url == "https://www.facebook.com/r.php"
+
+    take_screenshot("./screenshots/fb_register_account_page.png")
+
+    first_name_element = find_element(:name, "firstname")
+    fill_field(first_name_element, "sponge")
+    take_screenshot("./screenshots/firstname.png")
+
+    delete_cookies()
+  end
 end
