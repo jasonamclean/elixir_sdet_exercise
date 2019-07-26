@@ -16,13 +16,30 @@ defmodule ElixirSdetExerciseTest do
     navigate_to("https://www.facebook.com/r.php")
     IO.inspect current_url()
     url = current_url()
-    assert current_url == "https://www.facebook.com/r.php"
-
-    take_screenshot("./screenshots/fb_register_account_page.png")
+    assert url == "https://www.facebook.com/r.php"
+    take_screenshot("./screenshots/1_fb_register_page.png")
 
     first_name_element = find_element(:name, "firstname")
-    fill_field(first_name_element, "sponge")
-    take_screenshot("./screenshots/firstname.png")
+    fill_field(first_name_element, "Rod")
+
+    last_name_element = find_element(:name, "lastname")
+    fill_field(last_name_element, "Kimble")
+
+    email_element = find_element(:name, "reg_email__")
+    fill_field(email_element, "stuntit4life@onebigjump.com")
+
+    email_confirm_element = find_element(:name, "reg_email_confirmation__")
+    fill_field(email_confirm_element, "stunted4life@onebigjump.com")
+
+    password_element = find_element(:name, "reg_passwd__")
+    fill_field(password_element, "")
+
+    gender_element = find_element(:id, "u_0_6")
+    click(gender_element)
+
+    send_keys :return
+    IO.inspect fetch_errors()
+    take_screenshot("./screenshots/2_failure_to_submit.png")
 
     delete_cookies()
   end
