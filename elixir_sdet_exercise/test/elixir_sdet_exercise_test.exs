@@ -40,7 +40,6 @@ defmodule ElixirSdetExerciseTest do
     submit = find_element(:name, "websubmit")
     click(submit)
 
-    #send_keys :return
     IO.inspect fetch_errors()
     take_screenshot("./screenshots/2_failure_to_submit.png")
 
